@@ -2,8 +2,8 @@
 
 Nome dos integrantes: 
 - André Luiz Gomes Pereira
-- Pessoa 2
-- Pessoa 3
+- Anderson Heidrich Leite
+- Gabriel Azevedo
 
 Link do Surge: www.link.com.br
 
