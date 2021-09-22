@@ -12,7 +12,7 @@ export default function PokemonDetails() {
     return (
         <div>
             <h1>Detalhes de Pokemon</h1>
-            <button onClick={() => goToHome(history)}>Ínicio</button>
+            <button onClick={() => goToHome(history)}>Início</button>
             <button onClick={() => goToPokedex(history)}>Pokedex</button>
         </div>
     )

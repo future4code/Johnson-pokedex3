@@ -21,7 +21,7 @@ const GlobalStyled = createGlobalStyle`
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: blueviolet;
+      background-color: yellow;
     }
   }
 `
