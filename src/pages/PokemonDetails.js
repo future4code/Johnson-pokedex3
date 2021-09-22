@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useHistory } from 'react-router'
 import { goToPokedex, goToHome } from '../routes/coordinator'
 
 export default function PokemonDetails() {
     const history = useHistory()
 
+    useEffect(() => {
+        document.title = "Detalhes";
+      }, []);
 
     return (
         <div>

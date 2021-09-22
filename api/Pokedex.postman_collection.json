@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://pokeapi.co/api/v2/pokemon/?limit=1220&offset=0",
+					"raw": "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0",
 					"protocol": "https",
 					"host": [
 						"pokeapi",
