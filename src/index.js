@@ -5,18 +5,23 @@ import {createGlobalStyle} from "styled-components";
 
 
 const GlobalStyled = createGlobalStyle`
-  *{
+  
     margin:0;
     padding:0;
     box-sizing: border-box;
 
     font-family: sans-serif;
 
-    body{
+    html{
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+
+    body {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: lightblue ;
+      background-color: blueviolet;
     }
   }
 `
