@@ -6,9 +6,9 @@ import styled from "styled-components";
 
 
 const PokedexContainer = styled.div`
-    background-image: url("https://geekblog.com.br/wp-content/uploads/2021/02/o-que-e-erro-404-950x500.png");
-    background-size: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
 `
@@ -18,7 +18,7 @@ const Pokedex = () => {
     const history = useHistory()
 
     useEffect(() => {
-        document.title = "Pokedex";
+        document.title = "Pokédex";
       }, []);
 
     return (

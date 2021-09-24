@@ -6,7 +6,7 @@ export default function PokemonDetails() {
     const history = useHistory()
 
     useEffect(() => {
-        document.title = "Detalhes";
+        document.title = "Pokédex | Detalhes";
       }, []);
 
     return (
