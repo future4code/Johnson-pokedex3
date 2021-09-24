@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import Background from '../assets/pikachu.png'
+import Background from '../../assets/pikachu.png'
 import styled from 'styled-components'
 
 const ErrorContainer = styled.div`
@@ -14,7 +14,7 @@ const ErrorContainer = styled.div`
     color: white;
 `
 
-export default function Error() {
+const ErrorPage = () => {
 
     useEffect(() => {
         document.title = "Pokédex | Erro 404";
@@ -26,3 +26,5 @@ export default function Error() {
         </ErrorContainer>
     )
 }
+
+export default ErrorPage;

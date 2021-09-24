@@ -1,10 +1,10 @@
 import React from 'react'
-import Home from '../pages/Home'
-import {ListPokemons} from '../pages/ListPokemons'
-import Pokedex from '../pages/Pokedex'
-import PokemonDetails from '../pages/PokemonDetails'
-import Error from '../pages/Error'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import ErrorPage from '../pages/ErrorPage/ErrorPage'
+import HomePage from '../pages/HomePage/HomePage'
+import PokedexPage from '../pages/PokedexPage/PokedexPage'
+import PokemonDetailsPage from '../pages/PokemonDetailsPage/PokemonDetailsPage'
+import PokemonListPage from '../pages/PokemonListPage/PokemonListPage'
 
 const Routes = () => {
     return (
@@ -12,19 +12,19 @@ const Routes = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path={"/"}>
-                        <Home />
+                        <HomePage />
                     </Route>
-                    <Route exact path={"/list"}>
-                        <ListPokemons />
+                    <Route exact path={"/pokemon-list"}>
+                        <PokemonListPage />
                     </Route>
                     <Route exact path={"/pokedex"}>
-                        <Pokedex />
+                        <PokedexPage />
                     </Route>
                     <Route exact path={"/pokemon-details"}>
-                        <PokemonDetails />
+                        <PokemonDetailsPage />
                     </Route>
                     <Route>
-                        <Error />
+                        <ErrorPage />
                     </Route>
                 </Switch>
             </BrowserRouter>

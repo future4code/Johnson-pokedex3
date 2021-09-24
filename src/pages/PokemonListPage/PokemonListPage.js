@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from "../constants/BASE_URL";
-import "../pages/ListPokemon/listPokemon.css";
+import { BASE_URL } from "../../constants/BASE_URL";
+import "./PokemonListPage.css";
+import styled from "styled-components";
 
-export const ListPokemons = () => {
-  const [pokemons, setPokemons] = useState([{}]);
+const PokemonListPageContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 44px;
+  justify-items: center;
+  align-items: center;
+`
+
+const PokemonListPage = () => {
+  const [pokemon, setPokemon] = useState([{}]);
   const [url, setUrl] = useState({});
   const [details, setDetails] = useState("");
 
@@ -12,7 +22,7 @@ export const ListPokemons = () => {
     axios
       .get(BASE_URL)
       .then((response) => {
-        setPokemons(response.data.results);
+        setPokemon(response.data.results);
       })
       .catch((err) => {
         alert("Algo deu ruim");
@@ -27,16 +37,15 @@ export const ListPokemons = () => {
 
   let conversao = details.weight / 10
 
-
-  return pokemons.map((item, id) => {
+  return pokemon.map((item, id) => {
     return (
       <div>
         {details === "" ? (
-          <div>
-            <h1>Pokemon: {item.name}</h1>
+          <PokemonListPageContainer>
+            <h1>{item.name}</h1>
             {/* <img src={details.sprites.front_default} /> */}
             <button onClick={() => handleOnClick(id+1)}>Detalhes</button>
-          </div>
+          </PokemonListPageContainer>
         ) : 
             <div>
                 {details.id === id ? 
@@ -58,3 +67,5 @@ export const ListPokemons = () => {
     );
   });
 };
+
+export default PokemonListPage;
