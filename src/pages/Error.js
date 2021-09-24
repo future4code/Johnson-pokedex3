@@ -17,7 +17,7 @@ const ErrorContainer = styled.div`
 export default function Error() {
 
     useEffect(() => {
-        document.title = "Erro 404";
+        document.title = "Pokédex | Erro 404";
       }, []);
 
     return (        

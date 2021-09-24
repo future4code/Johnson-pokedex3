@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from '../pages/Home'
+import {ListPokemons} from '../pages/ListPokemons'
 import Pokedex from '../pages/Pokedex'
 import PokemonDetails from '../pages/PokemonDetails'
 import Error from '../pages/Error'
@@ -12,6 +13,9 @@ const Routes = () => {
                 <Switch>
                     <Route exact path={"/"}>
                         <Home />
+                    </Route>
+                    <Route exact path={"/list"}>
+                        <ListPokemons />
                     </Route>
                     <Route exact path={"/pokedex"}>
                         <Pokedex />
