@@ -1,71 +1,149 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import React from "react";
 import { BASE_URL } from "../../constants/BASE_URL";
-import "./PokemonListPage.css";
 import styled from "styled-components";
+import useRequestData from "../../hooks/useRequestData";
+import { useHistory } from "react-router-dom";
 
 const PokemonListPageContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   width: 100%;
-  height: 44px;
+  height: auto;
+  overflow-x: hidden;
+  justify-content: center;
+  `
+
+const PokemonListCards = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 56%;
   justify-items: center;
-  align-items: center;
+  margin-top: 12vh;
+  `
+
+const PokemonCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 200px;
+  height: 280px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0 8px 48px 8px;
+  background-color: white;
+
+  :hover {
+    transform: scale(1.02);
+  }
+
+  span {
+    margin-left: 8px;
+    font-size: 20px;
+  }
+  
+  .poke-number {
+    font-size: 14px;
+    color: grey;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+    background-color: lightgrey;
+    border-radius: 4px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
 `
-
 const PokemonListPage = () => {
-  const [pokemon, setPokemon] = useState([{}]);
-  const [url, setUrl] = useState({});
-  const [details, setDetails] = useState("");
+  const pokemonList = useRequestData(BASE_URL, {});
+  const history = useHistory();
 
-  useEffect(() => {
-    axios
-      .get(BASE_URL)
-      .then((response) => {
-        setPokemon(response.data.results);
-      })
-      .catch((err) => {
-        alert("Algo deu ruim");
-      });
-  }, []);
+  const goToPokemonDetailsPage = (name) => {
+    history.push(`/pokemon-details/${name}`)
+  }
 
-  const handleOnClick = (id) => {
-    axios.get(`${BASE_URL}${id}`).then(res => {
-        setDetails(res.data)
-        })
-  };
+  const pokemonListResults =
+    pokemonList.results && pokemonList.results.map((pokemon, id) => {
+      const pokemonName = pokemon.name.toUpperCase()
+      const pokemonId = String(id+1).padStart(3, '0')
 
-  let conversao = details.weight / 10
+      return (
+        <PokemonCard>
+          <img onClick={() => goToPokemonDetailsPage(pokemonName)} key={pokemonName} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemonId}.png`} />
+          <span className="poke-number"><b>Nº {pokemonId}</b></span>
+          <span><b>{pokemonName}</b></span>
+          <div className="types">
+            
+          </div>
+        </PokemonCard>
+      )
+    })
+  return (
+    <PokemonListPageContainer>
+      <PokemonListCards>
+        {pokemonListResults}
+      </PokemonListCards>
+    </PokemonListPageContainer>
+  )
+}
 
-  return pokemon.map((item, id) => {
-    return (
-      <div>
-        {details === "" ? (
-          <PokemonListPageContainer>
-            <h1>{item.name}</h1>
-            {/* <img src={details.sprites.front_default} /> */}
-            <button onClick={() => handleOnClick(id+1)}>Detalhes</button>
-          </PokemonListPageContainer>
-        ) : 
-            <div>
-                {details.id === id ? 
-                <div>
-                    <img src={details.sprites.front_default}/>
-                    <p>HP: {details.stats[0].base_stat}</p>
-                    <p>Ataque: {details.stats[1].base_stat}</p>
-                    <p>Defesa: {details.stats[2].base_stat}</p>
-                    <p>Ataque Especial: {details.stats[3].base_stat}</p>
-                    <p>Defesa Especial: {details.stats[4].base_stat}</p>
-                    <p>Velocidade: {details.stats[5].base_stat}</p>
-                    <p>Peso: {conversao} Kg</p>
-                    <p>Tipo 1: {details.types[0].type.name}</p>
-                    {details.types.length > 1 ? <p>Tipo 2: {details.types[1].type.name}</p> : ""}
-                </div> : ""}
-            </div>
-        }
-      </div>
-    );
-  });
-};
+  // const [pokemon, setPokemon] = useState([{}]);
+  // const [pokemonDetails, setPokemonDetails] = useState("");
+
+  // useEffect(() => {
+  //   axios
+  //     .get(BASE_URL)
+  //     .then((response) => {
+  //       setPokemon(response.data.results);
+  //     })
+  //     .catch((err) => {
+  //       alert("Algo deu ruim");
+  //     });
+  // }, []);
+
+  // const handleOnClick = (id) => {
+  //   axios.get(`${BASE_URL}${id}`).then(res => {
+  //       setPokemonDetails(res.data)
+  //       })
+  // };
+
+  // const 
+  // const { sprites, stats, types, weight } = pokemonDetails;
+
+  // let conversao = weight / 10
+
+  // return pokemon.map((item, id) => {
+  //   return (
+  //     <div>
+  //       {pokemonDetails === "" ? (
+  //         <PokemonListPageContainer>
+  //           <h1>{item.name}</h1>
+  //           {/* <img src={details.sprites.front_default} /> */}
+  //           <button onClick={() => handleOnClick(item.name)}>Detalhes</button>
+  //         </PokemonListPageContainer>
+  //       ) : 
+  //           <div>
+  //               {pokemonDetails.id === id ?
+  //               <div>
+  //                   <img src={sprites.front_default}/>
+  //                   <p>HP: {stats[0].base_stat}</p>
+  //                   <p>Ataque: {stats[1].base_stat}</p>
+  //                   <p>Defesa: {stats[2].base_stat}</p>
+  //                   <p>Ataque Especial: {stats[3].base_stat}</p>
+  //                   <p>Defesa Especial: {stats[4].base_stat}</p>
+  //                   <p>Velocidade: {stats[5].base_stat}</p>
+  //                   <p>Peso: {conversao} Kg</p>
+  //                   <p>Tipo 1: {types[0].type.name}</p>
+  //                   {types.length > 1 ? <p>Tipo 2: {types[1].type.name}</p> : ""}
+  //               </div> : ""}
+  //           </div>
+  //       }
+  //     </div>
+  //   );
+  // });
 
 export default PokemonListPage;

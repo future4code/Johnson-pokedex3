@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { goToHomePage, goToPokemonDetailsPage } from "../../routes/coordinator";
+import { goToHomePage } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -25,7 +25,7 @@ const PokedexPage = () => {
             <h1>Pokedex</h1>
             <div>
                 <button onClick={() => goToHomePage(history)}>Home</button>
-                <button onClick={() => goToPokemonDetailsPage(history)}>Detalhes</button>
+                {/* <button onClick={() => goToPokemonDetailsPage(history)}>Detalhes</button> */}
             </div>
         </PokedexContainer>
     )

@@ -1,23 +1,23 @@
-body {
+/* body {
   height: 100vh;
   background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-img {
+.logo {
   position: relative;
   top: -82px;
 }
 
-p {
+/* p {
   position: relative;
   top: 9rem;
   font-size: 28px;
   font-weight: 900;
   letter-spacing: -2px;
-}
+} */
 
 .child-to-body {
   width: 300px;
