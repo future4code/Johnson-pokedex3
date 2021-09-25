@@ -12,7 +12,7 @@ const HomePage = () => {
     }, []);
     return (
         <div class="poke_box">
-            <img src={GottaCatchEmAll} alt="Logo Pokemon" />
+            <img className="logo" src={GottaCatchEmAll} alt="Logo Pokemon" />
             <div onClick={() => goToPokemonListPage(history)} class="pokeball">
                 <div class="pokeball__button"></div>
             </div>

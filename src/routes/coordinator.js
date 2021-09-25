@@ -10,7 +10,3 @@ export const goToPokemonListPage = (history) => {
 export const goToPokedexPage = (history) => {
     history.push("/pokedex")
 }
-
-export const goToPokemonDetailsPage = (history) => {
-    history.push("/pokemon-details")
-}

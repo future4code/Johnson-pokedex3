@@ -6,24 +6,23 @@ import {createGlobalStyle} from "styled-components";
 
 const GlobalStyled = createGlobalStyle`
   
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-
-    font-family: sans-serif;
-
-    html{
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-
+  /* box-sizing: border-box;
+  
+  font-family: sans-serif;
+  
+  html{
+    overflow: hidden; */
+    
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      /* display: flex; */
+      /* align-items: center; */
+      /* justify-content: center; */
+      margin: 0;
+      padding: 0;
+      max-width: 100vw;
+      height: auto;
       background-color: yellow;
     }
-  }
 `
 
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
-import { goToHomePage, goToPokedexPage } from '../../routes/coordinator'
+import { goToHomePage, goToPokedexPage, goToPokemonListPage } from '../../routes/coordinator'
 
 const PokemonDetailsPage = () => {
     const history = useHistory()
@@ -13,7 +13,8 @@ const PokemonDetailsPage = () => {
         <div>
             <h1>Detalhes de Pokemon</h1>
             <button onClick={() => goToHomePage(history)}>Início</button>
-            <button onClick={() => goToPokedexPage(history)}>Pokedex</button>
+            <button onClick={() => goToPokemonListPage(history)}>Pokémon</button>
+            <button onClick={() => goToPokedexPage(history)}>Pokédex</button>
         </div>
     )
 }

@@ -20,7 +20,7 @@ const Routes = () => {
                     <Route exact path={"/pokedex"}>
                         <PokedexPage />
                     </Route>
-                    <Route exact path={"/pokemon-details"}>
+                    <Route exact path={"/pokemon-details/:name"}>
                         <PokemonDetailsPage />
                     </Route>
                     <Route>
