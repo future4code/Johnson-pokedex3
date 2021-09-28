@@ -5,6 +5,7 @@ import useRequestData from "../../hooks/useRequestData";
 import '../PokemonListPage/PokemonListPage.css'
 import { useState } from 'react';
 import axios from "axios";
+import { useEffect } from 'react';
 
 const PokemonListPageContainer = styled.div`
   display: flex;
@@ -65,7 +66,12 @@ const PokemonListPage = () => {
   const [cardDetails, setCardDetails] = useState([])
   const [selectedId, setSelectId] = useState()
 
-  const handleOnClick = async (id) => {
+  useEffect(() => {
+    selectedId !== "selected" ? document.title = "Pokédex | Lista" : document.title = `Pokédex | ${cardDetails.species.name.toUpperCase()}`
+
+  }, [cardDetails, selectedId]);
+
+   const handleOnClick = async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}${id}`)
       setCardDetails(response.data)
@@ -96,7 +102,7 @@ const PokemonListPage = () => {
       )
     })
 
-
+   
   return (
     <PokemonListPageContainer>
       {selectedId !== "selected" ? <PokemonListCards>
