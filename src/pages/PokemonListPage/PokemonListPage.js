@@ -2,8 +2,9 @@
 import { BASE_URL } from "../../constants/BASE_URL";
 import styled from "styled-components";
 import useRequestData from "../../hooks/useRequestData";
-import { useHistory } from "react-router-dom";
 import '../PokemonListPage/PokemonListPage.css'
+import { useState } from 'react';
+import axios from "axios";
 
 const PokemonListPageContainer = styled.div`
   display: flex;
@@ -61,21 +62,31 @@ const PokemonCard = styled.div`
 
 const PokemonListPage = () => {
   const pokemonList = useRequestData(BASE_URL, {});
-  const history = useHistory();
+  const [cardDetails, setCardDetails] = useState([])
+  const [selectedId, setSelectId] = useState()
 
-  const goToPokemonDetailsPage = (name) => {
-    history.push(`/pokemon-details/${name}`)
+  const handleOnClick = async (id) => {
+    try {
+      const response = await axios.get(`${BASE_URL}${id}`)
+      setCardDetails(response.data)
+      setSelectId("selected")
+    } catch (err) {
+      alert(err.message)
+    }
+  };
+
+  const backListPokemon = () => {
+    window.location.reload()
   }
 
   const pokemonListResults =
     pokemonList.results && pokemonList.results.map((pokemon, id) => {
       const pokemonName = pokemon.name.toUpperCase()
-      const pokemonId = String(id + 1).padStart(3, '0')
-
+      const pokemonId = String(id + 1)
 
       return (
         <PokemonCard>
-          <img onClick={() => goToPokemonDetailsPage(pokemonName)} key={pokemonName} src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemonId}.png`} alt={`Imagem ${pokemonName.name}`} />
+          <img onClick={() => handleOnClick(pokemonId)} key={pokemonName} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`} alt={`Imagem ${pokemonName.name}`} />
           <span className="poke-number"><b>Nº {pokemonId}</b></span>
           <span><b>{pokemonName}</b></span>
           <div className="types">
@@ -88,66 +99,24 @@ const PokemonListPage = () => {
 
   return (
     <PokemonListPageContainer>
-      <PokemonListCards>
+      {selectedId !== "selected" ? <PokemonListCards>
         {pokemonListResults}
-      </PokemonListCards>
+      </PokemonListCards> : <div>
+        <img src={cardDetails.sprites.front_default} alt={cardDetails.species.name} />
+        <h1>{cardDetails.species.name.toUpperCase()}</h1>
+        <p>HP: {cardDetails.stats[0].base_stat}</p>
+        <p>Ataque: {cardDetails.stats[1].base_stat}</p>
+        <p>Defesa: {cardDetails.stats[2].base_stat}</p>
+        <p>Ataque Especial: {cardDetails.stats[3].base_stat}</p>
+        <p>Defesa Especial: {cardDetails.stats[4].base_stat}</p>
+        <p>Velocidade: {cardDetails.stats[5].base_stat}</p>
+        <p>Peso: {cardDetails.conversao} Kg</p>
+        <p>Tipo 1: {cardDetails.types[0].type.name}</p>
+        {cardDetails.types.length > 1 ? <p>Tipo 2: {cardDetails.types[1].type.name}</p> : ""}
+        <button onClick={backListPokemon}>Voltar</button>
+      </div>}
     </PokemonListPageContainer>
   )
 }
-
-// const [pokemon, setPokemon] = useState([{}]);
-// const [pokemonDetails, setPokemonDetails] = useState("");
-
-// useEffect(() => {
-//   axios
-//     .get(BASE_URL)
-//     .then((response) => {
-//       setPokemon(response.data.results);
-//     })
-//     .catch((err) => {
-//       alert("Algo deu ruim");
-//     });
-// }, []);
-
-// const handleOnClick = (id) => {
-//   axios.get(`${BASE_URL}${id}`).then(res => {
-//       setPokemonDetails(res.data)
-//       })
-// };
-
-// const 
-// const { sprites, stats, types, weight } = pokemonDetails;
-
-// let conversao = weight / 10
-
-// return pokemon.map((item, id) => {
-//   return (
-//     <div>
-//       {pokemonDetails === "" ? (
-//         <PokemonListPageContainer>
-//           <h1>{item.name}</h1>
-//           {/* <img src={details.sprites.front_default} /> */}
-//           <button onClick={() => handleOnClick(item.name)}>Detalhes</button>
-//         </PokemonListPageContainer>
-//       ) : 
-//           <div>
-//               {pokemonDetails.id === id ?
-//               <div>
-//                   <img src={sprites.front_default}/>
-//                   <p>HP: {stats[0].base_stat}</p>
-//                   <p>Ataque: {stats[1].base_stat}</p>
-//                   <p>Defesa: {stats[2].base_stat}</p>
-//                   <p>Ataque Especial: {stats[3].base_stat}</p>
-//                   <p>Defesa Especial: {stats[4].base_stat}</p>
-//                   <p>Velocidade: {stats[5].base_stat}</p>
-//                   <p>Peso: {conversao} Kg</p>
-//                   <p>Tipo 1: {types[0].type.name}</p>
-//                   {types.length > 1 ? <p>Tipo 2: {types[1].type.name}</p> : ""}
-//               </div> : ""}
-//           </div>
-//       }
-//     </div>
-//   );
-// });
 
 export default PokemonListPage;
