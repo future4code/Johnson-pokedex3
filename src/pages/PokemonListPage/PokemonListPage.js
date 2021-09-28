@@ -64,7 +64,7 @@ const PokemonCard = styled.div`
 const PokemonListPage = () => {
   const pokemonList = useRequestData(BASE_URL, {});
   const [cardDetails, setCardDetails] = useState([])
-  const [selectedId, setSelectId] = useState()
+  const [selectedId, setSelectId] = useState('showPokemon')
 
   useEffect(() => {
     selectedId !== "selected" ? document.title = "Pokédex | Lista" : document.title = `Pokédex | ${cardDetails.species.name.toUpperCase()}`
@@ -82,7 +82,7 @@ const PokemonListPage = () => {
   };
 
   const backListPokemon = () => {
-    window.location.reload()
+    setSelectId('showPokemon')
   }
 
   const pokemonListResults =
@@ -108,7 +108,7 @@ const PokemonListPage = () => {
       {selectedId !== "selected" ? <PokemonListCards>
         {pokemonListResults}
       </PokemonListCards> : <div>
-        <img src={cardDetails.sprites.front_default} alt={cardDetails.species.name} />
+        <img src={cardDetails.sprites.front_default} alt={cardDetails.species.name} style={{width: "200px", height: "200px"}}/>
         <h1>{cardDetails.species.name.toUpperCase()}</h1>
         <p>HP: {cardDetails.stats[0].base_stat}</p>
         <p>Ataque: {cardDetails.stats[1].base_stat}</p>
@@ -116,7 +116,7 @@ const PokemonListPage = () => {
         <p>Ataque Especial: {cardDetails.stats[3].base_stat}</p>
         <p>Defesa Especial: {cardDetails.stats[4].base_stat}</p>
         <p>Velocidade: {cardDetails.stats[5].base_stat}</p>
-        <p>Peso: {cardDetails.conversao} Kg</p>
+        <p>Peso: {cardDetails.weight / 10} Kg</p>
         <p>Tipo 1: {cardDetails.types[0].type.name}</p>
         {cardDetails.types.length > 1 ? <p>Tipo 2: {cardDetails.types[1].type.name}</p> : ""}
         <button onClick={backListPokemon}>Voltar</button>
