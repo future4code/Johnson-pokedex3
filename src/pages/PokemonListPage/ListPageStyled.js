@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const PokemonListPageContainer = styled.div`
   display: flex;
   width: 100%;
@@ -25,7 +24,7 @@ export const PokemonCard = styled.div`
   align-items: flex-start;
   width: 200px;
   height: 280px;
-  border-radius: 20px;
+  border-radius: 16px;
   margin: 0 8px 48px 8px;
 	box-shadow: 0 3px 24px rgba(100, 100, 100, 0.5);
     background-color: ${(props) => {
@@ -83,7 +82,7 @@ export const PokemonCard = styled.div`
   }
 
   span {
-    margin-left: 8px;
+    margin: 0 0 8px 12px;
     font-size: 20px;
   }
   
