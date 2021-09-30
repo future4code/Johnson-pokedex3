@@ -21,7 +21,7 @@ const GlobalStyled = createGlobalStyle`
       padding: 0;
       max-width: 100vw;
       height: auto;
-      background-color: yellow;
+      background-color: #ffcb05;
     }
 `
 

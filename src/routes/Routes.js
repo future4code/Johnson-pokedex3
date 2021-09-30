@@ -21,11 +21,11 @@ const Routes = () => {
                         <PokemonListPage />
                     </Route>
 
-                    <Route path={"/pokedex"}>
+                    <Route exact path={"/pokedex"}>
                         <PokedexPage />
                     </Route>
 
-                    <Route path={"/pokemon-details"}>
+                    <Route exact path={"/pokemon-details/:name"}>
                         <PokemonDetailsPage />
                     </Route>
 

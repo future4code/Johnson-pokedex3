@@ -1,48 +1,27 @@
 // import { BASE_IMG } from './../../constants/BASE_IMG';
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios'
+import React from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { BASE_URL } from './../../constants/BASE_URL';
-
-
+import useRequestData from '../../hooks/useRequestData';
 
 const PokemonDetailsPage = () => {
-    const urlPokemon = document.URL.substr(38, 50)
-    const [pokemon, setPokemon] = useState({})
-    const [pokemonType, setPokemonType] = useState("");
+    const params = useParams({});
     const history = useHistory();
 
+    const pokemon = useRequestData(`${BASE_URL}${params.name}`, {});
+
     const goBack = () => {
-        history.push("/pokemon-list")
+        history.goBack()
     }
-
-    const getPokemonDetails = () => {
-
-        axios.get(`${BASE_URL}${urlPokemon}`).then(res => {
-
-            setPokemon(res.data)
-            setPokemonType(res.data.types[0].type.name);
-        }).catch(err => {
-            alert(err.message)
-        })
-    }
-
-    useEffect(() => {
-        getPokemonDetails()
-    }, [])
-
-    console.log(pokemon)
-    console.log(getPokemonDetails())
 
     return (
         <div>
-            <h1>Nome: {pokemon.name}</h1>
-            <h1>Peso: {Number(pokemon.weight / 10)} kg</h1>
-            <h1>Tipos: {pokemonType} </h1>
-
-
-
-
+            {pokemon.name && <h1>{pokemon.name.toUpperCase()}</h1>}
+            {pokemon.sprites
+            && pokemon.sprites.other
+            && pokemon.sprites.other.dream_world
+            && pokemon.sprites.other.dream_world.front_default 
+            && (<img src={pokemon.sprites.other.dream_world.front_default}/>)}
             <button onClick={goBack}>Voltar</button>
         </div>
     )
