@@ -27,74 +27,82 @@ export const PokemonCard = styled.div`
   border-radius: 16px;
   margin: 0 8px 48px 8px;
 	box-shadow: 0 3px 24px rgba(100, 100, 100, 0.5);
-    background-color: ${(props) => {
-        switch (props.backgroundColor) {
-
-            case "fire":
-            return '#FDDFDF';
+  background-color: ${(props) => {
+    switch (props.backgroundColor) {
+      case "fire":
+        return '#FDDFDF';
             
-            case "grass": 
-            return '#DEFDE0';
+      case "grass": 
+        return '#DEFDE0';
 
-            case "electric": 
-            return '#FCF7DE';
+      case "electric": 
+        return '#FCF7DE';
 
-            case "water": 
-            return '#DEF3FD';
+      case "water": 
+        return '#DEF3FD';
 
-            case "ground": 
-            return '#f4e7da';
+      case "ground": 
+        return '#f4e7da';
 
-            case "rock": 
-            return '#d5d5d4';
+      case "rock": 
+        return '#d5d5d4';
 
-            case "fairy": 
-            return '#fceaff';
+      case "fairy": 
+        return '#fceaff';
 
-            case "poison": 
-            return '#98d7a5';
+      case "poison": 
+        return '#98d7a5';
 
-            case "bug": 
-            return '#f8d5a3';
+      case "bug": 
+        return '#f8d5a3';
 
-            case "dragon": 
-            return '#97b3e6';
+      case "dragon": 
+        return '#97b3e6';
 
-            case "psychic": 
-            return '#eaeda1';
+      case "psychic": 
+        return '#eaeda1';
 
-            case "flying": 
-            return '#F5F5F5';
+      case "flying": 
+        return '#F5F5F5';
 
-            case "fighting": 
-            return '#E6E0D4';
+      case "fighting": 
+        return '#E6E0D4';
             
-            case "normal": 
-            return'#F5F5F5';
+      case "normal": 
+        return'#F5F5F5';
             
-            default:
-              return "#fff";
-        }
+      default:
+        return "#fff";
     }
-};
+  }};
+
   :hover {
     transform: scale(1.02);
   }
 
   span {
-    margin: 0 0 8px 12px;
+    margin: 0 0 4px 12px;
     font-size: 20px;
   }
   
   .poke-number {
     font-size: 14px;
-    color: grey;
+    color: gray;
+    margin-top: 4px;
+  }
+
+  button {
+    /* width: 100%; */
+    height: 28px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   img {
     width: 200px;
     height: 200px;
-    background-color: lightgrey;
+    background-color: lightgray;
     border-radius: 4px;
 
     :hover {
