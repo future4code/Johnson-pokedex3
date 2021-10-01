@@ -1,4 +1,5 @@
 import useRequestData from "../../hooks/useRequestData";
+import { useEffect } from "react";
 import '../PokemonListPage/PokemonListPage.css'
 import { BASE_URL } from "../../constants/BASE_URL";
 import { BASE_IMG } from '../../constants/BASE_IMG';
@@ -6,6 +7,9 @@ import { useHistory } from "react-router";
 import { PokemonListPageContainer, PokemonListCards, PokemonCard } from './ListPageStyled'
 
 const PokemonListPage = () => {
+  useEffect(()=> {
+    document.title = 'Pokédex | Lista Pokémon'
+  })
   const pokemonList = useRequestData(BASE_URL, {});
   const history = useHistory();
 
@@ -19,7 +23,7 @@ const PokemonListPage = () => {
 
       return (
         <PokemonCard onClick={() => goToPokemonDetailsPage(pokemon.name)} key={pokemon.name}>
-          <img src={`${BASE_IMG}${pokemonId}.svg`} alt={`Imagem ${pokemon.name}`}/>
+          <img src={`${BASE_IMG}${pokemonId}.png`} alt={`Imagem ${pokemon.name}`}/>
           <span className="poke-number"><b>Nº {pokemonId}</b></span>
           <span><b>{pokemon.name.toUpperCase()}</b></span>
         </PokemonCard>
