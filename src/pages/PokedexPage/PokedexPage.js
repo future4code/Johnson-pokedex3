@@ -12,7 +12,6 @@ const PokedexContainer = styled.div`
     height: 100vh;
 `
 
-
 const PokedexPage = () => {
     const history = useHistory()
 
