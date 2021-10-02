@@ -202,16 +202,16 @@ const PokemonDetailsPage = () => {
     useEffect(()=> {
         document.title = 'Pokédex | Detalhes'
     }, [])
-
+    
     const params = useParams({});
-
+    
     const history = useHistory();
-
+    
     const pokemon = useRequestData(`${BASE_URL}${params.name}`, {});
 
+    
     const {name, types, weight, height} = pokemon
-   
-
+    
     const goBack = () => {
         history.goBack()
     }
