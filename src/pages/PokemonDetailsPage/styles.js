@@ -40,7 +40,7 @@ export const PokemonDetailsCard = styled.div`
         width: 160px;
         height: 160px;        
     }
-    
+
     .all {
         display: flex;
         width: 64vw;

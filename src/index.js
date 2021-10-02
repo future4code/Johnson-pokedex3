@@ -22,6 +22,9 @@ const GlobalStyled = createGlobalStyle`
       max-width: 100vw;
       height: auto;
       background-color: #ffcb05;
+      button{
+        cursor:pointer;
+      }
     }
 `
 
