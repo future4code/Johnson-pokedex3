@@ -69,7 +69,7 @@ export const PokemonCard = styled.div`
         return '#E6E0D4';
             
       case "normal": 
-        return'#F5F5F5';
+        return '#F5F5F5';
             
       default:
         return "#fff";
@@ -92,6 +92,8 @@ export const PokemonCard = styled.div`
   }
 
   button {
+    display: flex;
+    justify-content: center;
     /* width: 100%; */
     height: 28px;
     :hover {

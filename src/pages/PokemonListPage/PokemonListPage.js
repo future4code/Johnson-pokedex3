@@ -4,7 +4,7 @@ import '../PokemonListPage/PokemonListPage.css'
 import { BASE_URL } from "../../constants/BASE_URL";
 import { BASE_IMG } from '../../constants/BASE_IMG';
 import { useHistory } from "react-router";
-import { PokemonListPageContainer, PokemonListCards, PokemonCard } from './ListPageStyled'
+import { PokemonListPageContainer, PokemonListCards, PokemonCard } from './styles'
 
 const PokemonListPage = () => {
   useEffect(()=> {
