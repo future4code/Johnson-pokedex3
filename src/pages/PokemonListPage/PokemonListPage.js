@@ -1,10 +1,11 @@
 import useRequestData from "../../hooks/useRequestData";
-import { useEffect } from "react";
+import axios from 'axios'
+import { useEffect, useState } from "react";
 import "../PokemonListPage/PokemonListPage.css";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { BASE_IMG } from "../../constants/BASE_IMG";
 import { useHistory } from "react-router";
-import { CgPokemon, CgDetailsMore } from "react-icons/cg";
+import { CgPokemon } from "react-icons/cg";
 import {
   PokemonListPageContainer,
   PokemonListCards,
@@ -18,11 +19,21 @@ const PokemonListPage = () => {
     document.title = "Pokédex | Lista Pokémon";
   });
   const pokemonList = useRequestData(BASE_URL, {});
+  const [isPokedex, setPokedex] = useState(false)
   const history = useHistory();
 
   const goToPokemonDetailsPage = (name) => {
     history.push(`/pokemon-details/${name}`);
   };
+
+  const addPokedex = (pokemon) => {
+    setPokedex(true)
+    alert("Adicionado na Pokédex")
+  }
+
+  useEffect(() => {
+    axios.get(BASE_URL)
+  }, [isPokedex])
 
   const pokemonListResults =
     pokemonList.results &&
@@ -30,34 +41,32 @@ const PokemonListPage = () => {
       const pokemonId = String(id + 1);
 
       return (
-        <PokemonCard>
-          <DivImage>
-            <img
-              src={`${BASE_IMG}${pokemonId}.png`}
-              alt={`Imagem ${pokemon.name}`}
-            />
-          </DivImage>
-          <span className="poke-number">
-            <b># {pokemonId}</b>
-          </span>
-          <span>
-            <b>{pokemon.name.toUpperCase()}</b>
-          </span>
-          <DivButtons>
-            <button class="btn-grad" onClick={() => alert("Sem funciomaneoto")}>
-              add
-              <CgPokemon size="20" color="red" /> 
-            </button>
+        <>
+          {isPokedex !== true ?
+            <PokemonCard>
+              <DivImage>
+                <img
+                  onClick={() => goToPokemonDetailsPage(pokemon.name)}
+                  src={`${BASE_IMG}${pokemonId}.png`}
+                  alt={`Imagem ${pokemon.name}`}
+                />
+              </DivImage>
+              <span className="poke-number">
+                <b># {pokemonId}</b>
+              </span>
+              <span>
+                <b>{pokemon.name.toUpperCase()}</b>
+              </span>
+              <DivButtons>
+                <button class="btn-grad" onClick={() => addPokedex()}>
+                  add
+                  <CgPokemon size="26" color="red" />
+                </button>
 
-            <button
-              key={pokemon.name}
-              onClick={() => goToPokemonDetailsPage(pokemon.name)}
-            >
-              details
-              <CgDetailsMore size="20" />
-            </button>
-          </DivButtons>
-        </PokemonCard>
+              </DivButtons>
+            </PokemonCard>
+            : <h1>No data</h1>}
+        </>
       );
     });
 
