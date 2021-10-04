@@ -5,11 +5,11 @@ Nome dos integrantes:
 - Anderson Heidrich Leite
 - Gabriel Azevedo
 
-Link do Surge: www.link.com.br
+Link do Surge: https://aga-pokedex.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- Exibir os 20 primeiros Pokémons.
+- Ao Clicar na sua imagem ir para os detalhes do Pokémon escolhido.
 
 O que não funciona: 
 - Item 3
