@@ -9,22 +9,7 @@ export const PokemonDetailsContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: black;
-
-    /* button {
-        display: flex;
-        width: 100px;
-        height: 60px;
-        justify-content: center;
-        align-items: center;
-    } */
 `
-// export const PokemonDetailsBackground = styled.div`
-//     display: flex;
-//     justify-content: center;
-//     width: 74vw;
-//     height: 84vh;
-//     background-color: lightgray;
-// `
 
 export const PokemonDetailsCard = styled.div`
     display: flex;
@@ -34,7 +19,7 @@ export const PokemonDetailsCard = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 8px;
 
     img {
         width: 160px;
@@ -50,11 +35,12 @@ export const PokemonDetailsCard = styled.div`
     .sprites {
         display: flex;
         justify-content: space-around;
-        width: 30vw;
+        width: 100vw;
         align-items: center;
         background-image: url(${Background});
         background-size: cover;
-        border-radius: 4px;
+        border-radius: 8px;
+        margin-right: 50px  ;
     }
 
     .back {

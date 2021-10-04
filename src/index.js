@@ -6,17 +6,8 @@ import {createGlobalStyle} from "styled-components";
 
 const GlobalStyled = createGlobalStyle`
   
-  /* box-sizing: border-box;
-  
-  font-family: sans-serif;
-  
-  html{
-    overflow: hidden; */
     
     body {
-      /* display: flex; */
-      /* align-items: center; */
-      /* justify-content: center; */
       margin: 0;
       padding: 0;
       max-width: 100vw;

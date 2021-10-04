@@ -5,10 +5,12 @@ import { FRONT_GIF, BACK_GIF } from "../../constants/BASE_GIF";
 import useRequestData from "../../hooks/useRequestData";
 import {
   PokemonDetailsContainer,
-  PokemonDetailsBackground,
   PokemonDetailsCard,
 } from "./styles";
 import Header from "../../components/Header";
+import { useHistory } from 'react-router';
+import { DivButtons } from './../PokemonListPage/ListPageStyled';
+import {CgBackspace} from 'react-icons/cg'
 
 const PokemonDetailsPage = () => {
   useEffect(() => {
@@ -16,21 +18,20 @@ const PokemonDetailsPage = () => {
   }, []);
 
   const params = useParams({});
-  // const history = useHistory();
+  const history = useHistory();
 
   const pokemon = useRequestData(`${BASE_URL}${params.name}`, {});
 
   const { name, types, weight, height, stats, abilities } = pokemon;
 
-  // const goBack = () => {
-  //     history.goBack()
-  // }
+  const goBack = () => {
+      history.push('/pokemon-list')
+  }
 
   return (
     <>
       <Header />
       <PokemonDetailsContainer>
-        {/* <button onClick={goBack}>Voltar</button> */}
         <PokemonDetailsCard>
           <div className="all">
             <div className="sprites">
@@ -131,7 +132,14 @@ const PokemonDetailsPage = () => {
                 </div>
               </div>
             </div>
+            <DivButtons>
+            <button class="btn-grad" onClick={goBack}>
+              Back Details
+              <CgBackspace size="36" color="red" />
+            </button>
+          </DivButtons>
           </div>
+
         </PokemonDetailsCard>
       </PokemonDetailsContainer>
     </>

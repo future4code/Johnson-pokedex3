@@ -90,7 +90,7 @@ export const DivButtons = styled.div`
   height: 10%;
   width: 100%;
   background-color: transparent;
-  border-radius: 0 0 16px 16px;
+  border-radius: 16px;
 
   button {
     display: flex;
@@ -99,14 +99,14 @@ export const DivButtons = styled.div`
     font-weight: 600;
     text-transform: uppercase;
     border: none;
-    width: 49%;
+    width: 100%;
     height: 100%;
     color: #fff;
     transition: 0.1s;
 
     :nth-child(1) {
       transition: 0.1s;
-      border-radius: 0 0 0 16px;
+      border-radius: 0 0 16px 16px;
       padding-left: 20px;
       background-image: linear-gradient(
         to right,
@@ -126,7 +126,7 @@ export const DivButtons = styled.div`
       }
     }
     :nth-child(2) {
-      border-radius: 0 0 16px 0;
+      border-radius: 16px;
       background-image: linear-gradient(
         to right,
         #eb3349 0%,
