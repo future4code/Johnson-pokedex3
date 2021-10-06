@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Header from '../../components/Header'
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "./../../constants/BASE_URL";
 import { FRONT_GIF, BACK_GIF } from "../../constants/BASE_GIF";
@@ -7,7 +8,6 @@ import {
   PokemonDetailsContainer,
   PokemonDetailsCard,
 } from "./styles";
-import Header from "../../components/Header";
 import { useHistory } from 'react-router';
 import { DivButtons } from './../PokemonListPage/ListPageStyled';
 import {CgBackspace} from 'react-icons/cg'
@@ -20,7 +20,7 @@ const PokemonDetailsPage = () => {
   const params = useParams({});
   const history = useHistory();
 
-  const pokemon = useRequestData(`${BASE_URL}${params.name}`, {});
+  const pokemon = useRequestData(`${BASE_URL}/pokemon/${params.name}`, {});
 
   const { name, types, weight, height, stats, abilities } = pokemon;
 

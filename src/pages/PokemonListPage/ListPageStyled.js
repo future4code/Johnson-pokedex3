@@ -6,6 +6,7 @@ export const PokemonListPageContainer = styled.div`
   height: auto;
   overflow-x: hidden;
   justify-content: center;
+  position: relative;
 `;
 
 export const PokemonListCards = styled.div`
@@ -14,7 +15,7 @@ export const PokemonListCards = styled.div`
   grid-template-rows: repeat(5, 1fr);
   width: 56%;
   justify-items: center;
-  margin-top: 12vh;
+  margin-top: 24vh;
 `;
 
 export const PokemonCard = styled.div`
@@ -74,6 +75,7 @@ export const DivImage = styled.div`
   height: 80%;
   margin: 5% 10% 5% 10%;
   background-color: #fff;
+  cursor: pointer;
 
   :hover {
     background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
